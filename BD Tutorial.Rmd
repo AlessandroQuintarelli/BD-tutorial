@@ -1,0 +1,49 @@
+---
+title: "BD Tutorial"
+author: "Alessandro Quintarelli"
+date: "23 gennaio 2017"
+output: html_document
+---
+
+
+## Introduction
+
+```{r cars, echo=FALSE}
+#load the data
+ourdata <- read.csv("data/Boats.csv", header = TRUE, sep = ",")
+
+#firstrows <- head(ourdata, 5)
+firstrows <- ourdata[1:5, 1:3]
+knitr::kable(firstrows)
+```
+
+Let's now see the correlation of our columns:
+
+```{r, echo=FALSE}
+colnames(firstrows) = substring(colnames(firstrows), first = 1, last = 4)
+
+firstrows <- cbind(firstrows, 1:5)
+colnames(firstrows)[ncol(firstrows)] <- "New"
+mycorrelationnumbers = cor(firstrows)
+knitr::kable(mycorrelationnumbers)
+```
+
+
+
+##Apply
+
+use of apply
+
+```{r, echo=FALSE}
+tmp = t(apply(firstrows, 1, summary))
+knitr::kable(tmp)
+```
+
+apply my own function
+```{r, echo=FALSE}
+myfunction <- function(inputvar){
+  sum(inputvar[1:2])
+}
+tmp = t(apply(firstrows, 2, myfunction))
+tmp
+```
