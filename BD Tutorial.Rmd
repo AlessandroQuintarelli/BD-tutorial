@@ -9,6 +9,10 @@ output: html_document
 ## Introduction
 
 ```{r cars, echo=FALSE}
+source("library.R")
+```
+
+```{r cars, echo=FALSE}
 #load the data
 ourdata <- read.csv("data/Boats.csv", header = TRUE, sep = ",")
 
@@ -41,9 +45,6 @@ knitr::kable(tmp)
 
 apply my own function
 ```{r, echo=FALSE}
-myfunction <- function(inputvar){
-  sum(inputvar[1:2])
-}
 tmp = t(apply(firstrows, 2, myfunction))
 tmp
 ```
